@@ -15,12 +15,13 @@ async function getUserId() {
   return userId
 }
 
-export async function addTask(title: string) {
+export async function addTask(title: string, description?: string) {
   const userId = await getUserId()
 
   await prisma.task.create({
     data: {
       title,
+      description: description || null,
       userId,
     },
   })

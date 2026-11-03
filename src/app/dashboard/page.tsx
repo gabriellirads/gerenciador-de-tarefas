@@ -24,6 +24,9 @@ export default async function DashboardPage() {
     where: {
       userId,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   })
 
   return (
@@ -46,7 +49,12 @@ export default async function DashboardPage() {
               <TableCell
                 className={task.done ? "line-through text-muted-foreground" : ""}
               >
-                {task.title}
+                <div className="font-medium">{task.title}</div>
+                {task.description && (
+                  <div className="text-sm text-muted-foreground">
+                    {task.description}
+                  </div>
+                )}
               </TableCell>
               <TableCell className="text-right">
                 <TaskActions id={task.id} done={task.done} />
